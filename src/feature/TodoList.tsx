@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { todoListState } from '../atoms';
+import TodoItem from './TodoItem';
 
 function TodoList() {
   const todoList = useRecoilValue(todoListState);
@@ -15,15 +16,11 @@ function TodoList() {
       <button type='button'>OLD</button>
       <ul className="todo-list">
         {
-          todoList.map(({ id, todo, is_done, created_at }) => (
-            <li key={ id }>
-              <label>
-                <input type='checkbox' defaultChecked={ is_done } />
-                <span>{ todo }</span>
-              </label>
-              <span>{ created_at }</span>
-              <button type='button'>DELETE</button>
-            </li>
+          todoList.map((item) => (
+            <TodoItem
+              key={ item.id }
+              { ...item }
+            />
           ))
         }
       </ul>
