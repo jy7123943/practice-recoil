@@ -1,0 +1,20 @@
+.input-container {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.todo-input {
+  width: 80%;
+  height: 35px;
+  padding: 10px;
+  font-size: 18px;
+  border: 1px solid #ddd;
+}
+
+.save-button {
+  width: 20%;
+  height: 35px;
+  background: #222;
+  color: #fff;
+  font-weight: bold;
+}

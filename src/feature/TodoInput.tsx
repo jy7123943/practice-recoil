@@ -3,6 +3,7 @@ import type { KeyboardEvent } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { todoListState, todoTextState } from '../atoms';
 import type { TodoListItem } from './../entity';
+import './TodoInput.css';
 
 function TodoInput() {
   const [todoText, setTodoText] = useRecoilState(todoTextState);
@@ -37,14 +38,21 @@ function TodoInput() {
   };
 
   return (
-    <div className="todo-input">
+    <div className="input-container">
       <input
         type='text'
         value={ todoText }
         onChange={ onTodoTextChange }
         onKeyPress={ onEnterPress }
+        className='todo-input'
       />
-      <button type='button' onClick={ saveTodoItem }>SAVE</button>
+      <button
+        type='button'
+        onClick={ saveTodoItem }
+        className='save-button'
+      >
+        SAVE
+      </button>
     </div>
   );
 }

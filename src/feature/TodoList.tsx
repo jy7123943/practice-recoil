@@ -9,11 +9,11 @@ function TodoList() {
   const todoList = useRecoilValue(todoListState);
 
   if (todoList.length === 0) {
-    return <div>Empty List</div>;
+    return <div className='empty'>Empty List!</div>;
   }
 
   return (
-    <div>
+    <>
       <TodoController />
       <ul className="todo-list">
         {
@@ -25,7 +25,7 @@ function TodoList() {
           ))
         }
       </ul>
-    </div>
+    </>
   );
 }
 

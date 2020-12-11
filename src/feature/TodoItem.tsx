@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import React from 'react';
 import { useSetRecoilState } from 'recoil';
 import { todoListState } from '../atoms';
@@ -17,13 +18,27 @@ function TodoItem({ id, todo, is_done, created_at }: TodoListItem) {
   };
 
   return (
-    <li key={ id }>
+    <li key={ id } className='todo-item'>
       <label>
-        <input type='checkbox' checked={ is_done } onChange={ onItemToggle } />
-        <span className={ is_done ? 'complete' : '' }>{ todo }</span>
+        <span className='todo'>
+          <input type='checkbox' checked={ is_done } onChange={ onItemToggle } />
+          <span
+            className={ is_done ? 'complete' : '' }
+          >
+            { todo }
+          </span>
+        </span>
+        <span className='date'>
+          { format(created_at, 'M.d k:m') }
+        </span>
       </label>
-      <span>{ created_at }</span>
-      <button type='button' onClick={ onItemDelete }>DELETE</button>
+      <button
+        type='button'
+        onClick={ onItemDelete }
+        className='delete-button'
+      >
+        X
+      </button>
     </li>
   );
 }

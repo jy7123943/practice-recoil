@@ -2,7 +2,7 @@ import React from 'react';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { todoListState } from '../atoms';
 import { setAllItemsDone, sortTodoList, SORT_TYPE } from '../controller';
-import './TodoList.css';
+import './TodoController.css';
 
 function TodoController() {
   const onAllItemsDelete = useResetRecoilState(todoListState);
@@ -17,11 +17,31 @@ function TodoController() {
   };
 
   return (
-    <div>
-      <button type='button' onClick={ onAllItemsCheck }>ALL DONE</button>
-      <button type='button' onClick={ onAllItemsDelete }>ALL DELETE</button>
-      <button type='button' onClick={ () => sortItems(SORT_TYPE.NEW) }>NEW</button>
-      <button type='button' onClick={ () => sortItems(SORT_TYPE.OLD) }>OLD</button>
+    <div className='controller'>
+      <button
+        type='button'
+        onClick={ onAllItemsCheck }
+      >
+        ALL DONE
+      </button>
+      <button
+        type='button'
+        onClick={ onAllItemsDelete }
+      >
+        ALL DELETE
+      </button>
+      <button
+        type='button'
+        onClick={ () => sortItems(SORT_TYPE.NEW) }
+      >
+        NEW
+      </button>
+      <button
+        type='button'
+        onClick={ () => sortItems(SORT_TYPE.OLD) }
+      >
+        OLD
+      </button>
     </div>
   );
 }
