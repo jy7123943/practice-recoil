@@ -1,31 +1,15 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { todoListState } from '../atoms';
-import { TodoListItem } from '../entity';
+import { setAllItemsDone, sortTodoList, SORT_TYPE } from '../controller';
 import './TodoList.css';
 
-enum SORT_TYPE {
-  NEW = 'new',
-  OLD = 'old',
-}
-
-const sortTodoList = (list: TodoListItem[], sortType: SORT_TYPE) => (
-  [...list].sort((left, right) => (
-    sortType === SORT_TYPE.NEW
-      ? right.created_at - left.created_at
-      : left.created_at - right.created_at
-  ))
-);
-
 function TodoController() {
-  const deleteAllItems = useResetRecoilState(todoListState);
+  const onAllItemsDelete = useResetRecoilState(todoListState);
   const setTodoList = useSetRecoilState(todoListState);
 
-  const setAllItemsDone = () => {
-    setTodoList((oldTodoList) => oldTodoList.map((item) => ({
-      ...item,
-      is_done: true
-    })));
+  const onAllItemsCheck = () => {
+    setTodoList((oldTodoList) => setAllItemsDone(oldTodoList));
   };
 
   const sortItems = (sortType: SORT_TYPE) => {
@@ -34,8 +18,8 @@ function TodoController() {
 
   return (
     <div>
-      <button type='button' onClick={ setAllItemsDone }>ALL DONE</button>
-      <button type='button' onClick={ deleteAllItems }>ALL DELETE</button>
+      <button type='button' onClick={ onAllItemsCheck }>ALL DONE</button>
+      <button type='button' onClick={ onAllItemsDelete }>ALL DELETE</button>
       <button type='button' onClick={ () => sortItems(SORT_TYPE.NEW) }>NEW</button>
       <button type='button' onClick={ () => sortItems(SORT_TYPE.OLD) }>OLD</button>
     </div>
