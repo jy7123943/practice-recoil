@@ -2,6 +2,7 @@ import React from 'react';
 import { useSetRecoilState } from 'recoil';
 import { todoListState } from '../atoms';
 import { TodoListItem } from '../entity';
+import './TodoItem.css';
 
 function TodoItem({ id, todo, is_done, created_at }: TodoListItem) {
   const setTodoList = useSetRecoilState(todoListState);
@@ -26,7 +27,7 @@ function TodoItem({ id, todo, is_done, created_at }: TodoListItem) {
     <li key={ id }>
       <label>
         <input type='checkbox' checked={ is_done } onChange={ toggleItem } />
-        <span>{ todo }</span>
+        <span className={ is_done ? 'complete' : '' }>{ todo }</span>
       </label>
       <span>{ created_at }</span>
       <button type='button' onClick={ onItemDelete }>DELETE</button>
