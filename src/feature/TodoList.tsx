@@ -18,7 +18,7 @@ function TodoList() {
           todoList.map(({ id, todo, is_done, created_at }) => (
             <li key={ id }>
               <label>
-                <input type='checkbox' checked={ is_done } />
+                <input type='checkbox' defaultChecked={ is_done } />
                 <span>{ todo }</span>
               </label>
               <span>{ created_at }</span>
