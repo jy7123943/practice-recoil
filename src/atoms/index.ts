@@ -1,18 +1,13 @@
 import { atom } from 'recoil';
+import type { RecoilState } from 'recoil';
+import type { TodoListItem } from './../entity/index';
 
 export const todoTextState = atom({
   key: 'todoTextState',
   default: '',
 });
 
-export const todoListState = atom({
+export const todoListState: RecoilState<TodoListItem[]> = atom({
   key: 'todoListState',
-  default: [
-    {
-      id: 0,
-      todo: '장보기',
-      is_done: false,
-      created_at: new Date().getTime(),
-    }
-  ],
+  default: [] as TodoListItem[],
 });
