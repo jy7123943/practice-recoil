@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { todoListState } from '../atoms';
+import TodoController from './TodoController';
 import TodoItem from './TodoItem';
 import './TodoList.css';
 
@@ -13,9 +14,7 @@ function TodoList() {
 
   return (
     <div>
-      <button type='button'>ALL CLEAR</button>
-      <button type='button'>NEW</button>
-      <button type='button'>OLD</button>
+      <TodoController />
       <ul className="todo-list">
         {
           todoList.map((item) => (
