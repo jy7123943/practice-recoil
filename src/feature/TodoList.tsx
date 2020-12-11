@@ -1,27 +1,31 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { todoListState } from '../atoms';
 
 function TodoList() {
+  const todoList = useRecoilValue(todoListState);
+
+  if (todoList.length === 0) {
+    return <div>Empty List</div>;
+  }
+
   return (
     <div>
       <button type='button'>NEW</button>
       <button type='button'>OLD</button>
       <ul className="todo-list">
-        <li>
-          <label>
-            <input type='checkbox' />
-            <span>장보기</span>
-          </label>
-          <span>2020.10.01 12:00pm</span>
-          <button type='button'>DELETE</button>
-        </li>
-        <li>
-          <label>
-            <input type='checkbox' />
-            <span>공부하기</span>
-          </label>
-          <span>2020.10.02 12:00am</span>
-          <button type='button'>DELETE</button>
-        </li>
+        {
+          todoList.map(({ id, todo, is_done, created_at }) => (
+            <li key={ id }>
+              <label>
+                <input type='checkbox' checked={ is_done } />
+                <span>{ todo }</span>
+              </label>
+              <span>{ created_at }</span>
+              <button type='button'>DELETE</button>
+            </li>
+          ))
+        }
       </ul>
     </div>
   );
