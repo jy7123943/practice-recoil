@@ -1,14 +1,16 @@
 import { format } from 'date-fns';
-import React from 'react';
+import React, { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { todoListState } from '../atoms';
 import { deleteTodoItem, toggleTodoItem } from '../controller';
 import { TodoListItem } from '../entity';
 import CheckIcon from '../img/CheckIcon';
+import TodoTextEditor from './TodoTextEditor';
 import './TodoItem.css';
 
 function TodoItem({ id, todo, is_complete, created_at }: TodoListItem) {
   const setTodoList = useSetRecoilState(todoListState);
+  const [isEditorShown, setEditorShown] = useState(false);
 
   const onItemDelete = () => {
     setTodoList((oldTodoList) => deleteTodoItem(oldTodoList, id));
@@ -33,14 +35,7 @@ function TodoItem({ id, todo, is_complete, created_at }: TodoListItem) {
           onChange={ onItemToggle }
         />
       </label>
-      <div className={ 'text' }>
-        { todo }
-        <input
-          type='text'
-          defaultValue={ todo }
-          className='modify-input'
-        />
-      </div>
+      <TodoTextEditor todoText={ todo } />
       <div className='date'>
         { format(created_at, 'M.d k:m') }
       </div>
