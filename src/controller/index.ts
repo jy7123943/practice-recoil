@@ -1,4 +1,4 @@
-import { TodoListItem } from './../entity/index';
+import { TodoListItem, FILTER_STATE } from './../entity/index';
 
 export const deleteTodoItem = (list: TodoListItem[], targetId: string) => (
   list.filter(({ id }) => id !== targetId)
@@ -12,14 +12,9 @@ export const toggleTodoItem = (list: TodoListItem[], targetId: string) => (
   ))
 );
 
-export enum SORT_TYPE {
-  NEW = 'new',
-  OLD = 'old',
-}
-
-export const sortTodoList = (list: TodoListItem[], sortType: SORT_TYPE) => (
+export const sortTodoList = (list: TodoListItem[], sortType: FILTER_STATE) => (
   [...list].sort((left, right) => (
-    sortType === SORT_TYPE.NEW
+    sortType === FILTER_STATE.NEW
       ? right.created_at - left.created_at
       : left.created_at - right.created_at
   ))

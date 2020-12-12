@@ -1,16 +1,16 @@
-.controller {
+.filter {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 25px;
 }
 
-.controller  button {
+.filter  button {
   padding: 5px;
   margin: 2px;
-  border: 1px solid #666;
-  background: #fff;
+  border: none;
+  background: #eee;
   border-radius: 10px;
   font-size: 11px;
-  color: #333;
+  color: #555;
 }

@@ -1,6 +1,8 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 import type { RecoilState } from 'recoil';
-import type { TodoListItem } from './../entity/index';
+import type { TodoListItem } from './../entity';
+import { FILTER_STATE } from './../entity';
+import { sortTodoList } from '../controller';
 
 export const todoTextState = atom({
   key: 'todoTextState',
@@ -10,4 +12,26 @@ export const todoTextState = atom({
 export const todoListState: RecoilState<TodoListItem[]> = atom({
   key: 'todoListState',
   default: [] as TodoListItem[],
+});
+
+export const todoListFilterState = atom({
+  key: 'todoListFilterState',
+  default: FILTER_STATE.DEFAULT,
+});
+
+export const filteredTodoListState = selector({
+  key: 'filteredTodoListState',
+  get: ({ get }) => {
+    const filter = get(todoListFilterState);
+    const list = get(todoListState);
+
+    switch (filter) {
+      case FILTER_STATE.NEW:
+        return sortTodoList(list, FILTER_STATE.NEW);
+      case FILTER_STATE.OLD:
+        return sortTodoList(list, FILTER_STATE.OLD);
+      default:
+        return list;
+    }
+  },
 });

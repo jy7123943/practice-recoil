@@ -1,12 +1,13 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { todoListState } from '../atoms';
+import { filteredTodoListState } from '../atoms';
 import TodoController from './TodoController';
 import TodoItem from './TodoItem';
+import TodoFilter from './TodoFilter';
 import './TodoList.css';
 
 function TodoList() {
-  const todoList = useRecoilValue(todoListState);
+  const todoList = useRecoilValue(filteredTodoListState);
 
   if (todoList.length === 0) {
     return <div className='empty'>Empty List!</div>;
@@ -15,6 +16,7 @@ function TodoList() {
   return (
     <>
       <TodoController />
+      <TodoFilter />
       <ul className="todo-list">
         {
           todoList.map((item) => (
