@@ -35,6 +35,11 @@ function TodoItem({ id, todo, is_complete, created_at }: TodoListItem) {
       </label>
       <div className={ 'text' }>
         { todo }
+        <input
+          type='text'
+          defaultValue={ todo }
+          className='modify-input'
+        />
       </div>
       <div className='date'>
         { format(created_at, 'M.d k:m') }

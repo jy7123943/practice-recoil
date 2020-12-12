@@ -16,7 +16,8 @@
 }
 
 .text {
-  padding: 0 5px 0 8px;
+  position: relative;
+  padding: 0 5px 0 10px;
   word-break: break-all;
   font-size: 15px;
   color: #222;
@@ -25,6 +26,18 @@
 .complete .text {
   text-decoration: line-through;
   color: #999;
+}
+
+.modify-input {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  padding: 5px;
+  transform: translateY(-50%);
+  font-size: 15px;
+  color: #222;
+  width: calc(100% - 20px);
+  border: 1px solid #eee;
 }
 
 .delete-button {
