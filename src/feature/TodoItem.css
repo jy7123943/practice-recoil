@@ -1,13 +1,7 @@
-.complete {
-  text-decoration: line-through;
-  color: #999;
-}
-
 .todo-item {
   display: grid;
-  grid-gap: 5px;
-  grid-row: 1;
-  grid-template-columns: auto 20px;
+  grid-gap: 2px;
+  grid-template-columns: 22px auto 55px 20px;
   margin-bottom: 10px;
   align-items: center;
 }
@@ -16,27 +10,20 @@
   margin-bottom: 0;
 }
 
-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .date {
-  min-width: 50px;
   font-size: 10px;
   color: #999;
 }
 
-.todo {
-  display: flex;
-  align-items: center;
-}
-
-.todo > span {
-  padding: 0 10px 0 5px;
+.text {
+  padding: 0 5px 0 8px;
   word-break: break-all;
   font-size: 15px;
+}
+
+.complete .text {
+  text-decoration: line-through;
+  color: #999;
 }
 
 .delete-button {
@@ -45,4 +32,35 @@ label {
   color: #3381b5;
   font-weight: bold;
   font-size: 11px;
+}
+
+label {
+  position: relative;
+  text-align: center;
+}
+
+label input[type='checkbox'] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.icon {
+  display: flex;
+  width: 22px;
+  height: 22px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #ededed;
+}
+
+.icon svg {
+  width: 12px;
+  fill: #fff;
+}
+
+.complete .icon {
+  background: #6dadd8;
 }

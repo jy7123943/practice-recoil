@@ -4,6 +4,7 @@ import { useSetRecoilState } from 'recoil';
 import { todoListState } from '../atoms';
 import { deleteTodoItem, toggleTodoItem } from '../controller';
 import { TodoListItem } from '../entity';
+import CheckIcon from '../img/CheckIcon';
 import './TodoItem.css';
 
 function TodoItem({ id, todo, is_complete, created_at }: TodoListItem) {
@@ -18,20 +19,26 @@ function TodoItem({ id, todo, is_complete, created_at }: TodoListItem) {
   };
 
   return (
-    <li key={ id } className='todo-item'>
+    <li
+      key={ id }
+      className={ `${is_complete ? 'complete' : ''} todo-item` }
+    >
       <label>
-        <span className='todo'>
-          <input type='checkbox' checked={ is_complete } onChange={ onItemToggle } />
-          <span
-            className={ is_complete ? 'complete' : '' }
-          >
-            { todo }
-          </span>
+        <span className='icon'>
+          <CheckIcon />
         </span>
-        <span className='date'>
-          { format(created_at, 'M.d k:m') }
-        </span>
+        <input
+          type='checkbox'
+          checked={ is_complete }
+          onChange={ onItemToggle }
+        />
       </label>
+      <div className={ 'text' }>
+        { todo }
+      </div>
+      <div className='date'>
+        { format(created_at, 'M.d k:m') }
+      </div>
       <button
         type='button'
         onClick={ onItemDelete }
