@@ -5,10 +5,13 @@ export interface TodoListItem {
   created_at: number;
 }
 
-export enum FILTER_STATE {
-  DEFAULT = 'default',
+export enum SORT_STATE {
   NEW = 'new',
   OLD = 'old',
+}
+
+export enum FILTER_STATE {
+  DEFAULT = 'default',
   COMPLETED = 'completed',
   UNCOMPLETED = 'uncompleted',
 }

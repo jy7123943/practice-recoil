@@ -26,10 +26,10 @@ export const filteredTodoListState = selector({
     const list = get(todoListState);
 
     switch (filter) {
-      case FILTER_STATE.NEW:
-        return sortTodoList(list, FILTER_STATE.NEW);
-      case FILTER_STATE.OLD:
-        return sortTodoList(list, FILTER_STATE.OLD);
+      // case FILTER_STATE.NEW:
+      //   return sortTodoList(list, FILTER_STATE.NEW);
+      // case FILTER_STATE.OLD:
+      //   return sortTodoList(list, FILTER_STATE.OLD);
       case FILTER_STATE.COMPLETED:
         return filterCompleted(list);
       case FILTER_STATE.UNCOMPLETED:
