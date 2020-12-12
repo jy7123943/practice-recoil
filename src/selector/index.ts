@@ -1,7 +1,7 @@
 import { sortTodoList } from './../controller/index';
 import { todoListFilterState, todoListState, todoSortState } from './../atoms/index';
 import { selector } from 'recoil';
-import { FILTER_STATE, SORT_STATE } from './../entity';
+import { FILTER_STATE } from './../entity';
 import { filterCompleted, filterUncompleted } from '../controller';
 
 export const filteredTodoListSelector = selector({

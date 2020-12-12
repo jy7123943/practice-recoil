@@ -1,9 +1,10 @@
-import { SORT_STATE } from './../entity/index';
+import { SORT_STATE, FILTER_STATE } from './../entity/index';
 import { TodoListItem } from './../entity';
 
 export enum STORAGE_KEY {
   TODO_LIST = 'todoList_key',
   SORT_STATE = 'sortState_key',
+  FILTER_STATE = 'filterState_key',
 }
 
 export const getItemFromStorage = <T>(
@@ -32,10 +33,18 @@ export const saveSortStateInStorage = (sortState: SORT_STATE): SORT_STATE => (
   saveItemInStorage(STORAGE_KEY.SORT_STATE, sortState)
 );
 
-export const getSortStateFromStorage = (): SORT_STATE => (
-  getItemFromStorage(STORAGE_KEY.SORT_STATE, SORT_STATE.NEW)
+export const saveFilterStateInStorage = (filterState: FILTER_STATE): FILTER_STATE => (
+  saveItemInStorage(STORAGE_KEY.FILTER_STATE, filterState)
 );
 
 export const getTodoListFromStorage = (): TodoListItem[] => (
   getItemFromStorage(STORAGE_KEY.TODO_LIST, [])
+);
+
+export const getSortStateFromStorage = (): SORT_STATE => (
+  getItemFromStorage(STORAGE_KEY.SORT_STATE, SORT_STATE.NEW)
+);
+
+export const getFilterStateFromStorage = (): FILTER_STATE => (
+  getItemFromStorage(STORAGE_KEY.FILTER_STATE, FILTER_STATE.DEFAULT)
 );

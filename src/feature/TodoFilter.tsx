@@ -2,7 +2,7 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import { todoListFilterState, todoSortState } from '../atoms';
 import { FILTER_STATE, SORT_STATE } from '../entity';
-import { saveSortStateInStorage } from '../storage';
+import { saveFilterStateInStorage, saveSortStateInStorage } from '../storage';
 import './TodoFilter.css';
 
 function TodoFilter() {
@@ -15,7 +15,10 @@ function TodoFilter() {
         <button
           key={ filter }
           type='button'
-          onClick={ () => setFilter(filter) }
+          onClick={ () => {
+            saveFilterStateInStorage(filter);
+            setFilter(filter);
+          } }
           className={ currentFilter === filter ? 'selected' : '' }
         >
           { filter }
