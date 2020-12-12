@@ -12,6 +12,18 @@ export const toggleTodoItem = (list: TodoListItem[], targetId: string) => (
   ))
 );
 
+export const mapEditedItem = (
+  list: TodoListItem[],
+  targetId: string,
+  updates: Partial<TodoListItem>,
+) => (
+  list.map((item) => (
+    item.id === targetId
+      ? { ...item, ...updates }
+      : item
+  ))
+);
+
 export const sortTodoList = (list: TodoListItem[], sortType: SORT_STATE) => (
   [...list].sort((left, right) => (
     sortType === SORT_STATE.NEW

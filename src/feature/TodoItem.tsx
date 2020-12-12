@@ -35,7 +35,10 @@ function TodoItem({ id, todo, is_complete, created_at }: TodoListItem) {
           onChange={ onItemToggle }
         />
       </label>
-      <TodoTextEditor todoText={ todo } />
+      <TodoTextEditor
+        id={ id }
+        todoText={ todo }
+      />
       <div className='date'>
         { format(created_at, 'M.d k:m') }
       </div>
