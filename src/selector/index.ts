@@ -1,21 +1,23 @@
-import { todoListFilterState, todoListState } from './../atoms/index';
+import { sortTodoList } from './../controller/index';
+import { todoListFilterState, todoListState, todoSortState } from './../atoms/index';
 import { selector } from 'recoil';
-import { FILTER_STATE } from './../entity';
+import { FILTER_STATE, SORT_STATE } from './../entity';
 import { filterCompleted, filterUncompleted } from '../controller';
 
-export const filteredTodoListState = selector({
-  key: 'filteredTodoListState',
+export const filteredTodoListSelector = selector({
+  key: 'filteredTodoListSelector',
   get: ({ get }) => {
     const filter = get(todoListFilterState);
     const list = get(todoListState);
+    const sortState = get(todoSortState);
 
     switch (filter) {
       case FILTER_STATE.COMPLETED:
-        return filterCompleted(list);
+        return sortTodoList(filterCompleted(list), sortState);
       case FILTER_STATE.UNCOMPLETED:
-        return filterUncompleted(list);
+        return sortTodoList(filterUncompleted(list), sortState);
       default:
-        return list;
+        return sortTodoList(list, sortState);
     }
   },
 });

@@ -1,14 +1,41 @@
+import { SORT_STATE } from './../entity/index';
 import { TodoListItem } from './../entity';
-const STORAGE_KEY = 'todoList_key';
 
-export const saveTodoListInStorage = (list: TodoListItem[]): TodoListItem[] => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+export enum STORAGE_KEY {
+  TODO_LIST = 'todoList_key',
+  SORT_STATE = 'sortState_key',
+}
 
-  return list;
+export const getItemFromStorage = <T>(
+  key: string,
+  defaultValue: T,
+) => {
+  const item = localStorage.getItem(key);
+
+  return item ? JSON.parse(item): defaultValue;
 };
 
-export const getTodoListFromStorage = (): TodoListItem[] => {
-  const list = localStorage.getItem(STORAGE_KEY);
+export const saveItemInStorage = <T>(
+  key: string,
+  item: T,
+) => {
+  localStorage.setItem(key, JSON.stringify(item));
 
-  return list ? JSON.parse(list) : [];
-}
+  return item;
+};
+
+export const saveTodoListInStorage = (list: TodoListItem[]): TodoListItem[] => (
+  saveItemInStorage(STORAGE_KEY.TODO_LIST, list)
+);
+
+export const saveSortStateInStorage = (sortState: SORT_STATE): SORT_STATE => (
+  saveItemInStorage(STORAGE_KEY.SORT_STATE, sortState)
+);
+
+export const getSortStateFromStorage = (): SORT_STATE => (
+  getItemFromStorage(STORAGE_KEY.SORT_STATE, SORT_STATE.NEW)
+);
+
+export const getTodoListFromStorage = (): TodoListItem[] => (
+  getItemFromStorage(STORAGE_KEY.TODO_LIST, [])
+);

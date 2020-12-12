@@ -1,14 +1,13 @@
 import React from 'react';
-import { useSetRecoilState, useRecoilState } from 'recoil';
-import { todoListFilterState, todoListState } from '../atoms';
-import { sortTodoList } from '../controller';
+import { useRecoilState } from 'recoil';
+import { todoListFilterState, todoSortState } from '../atoms';
 import { FILTER_STATE, SORT_STATE } from '../entity';
-import { saveTodoListInStorage } from '../storage';
+import { saveSortStateInStorage } from '../storage';
 import './TodoFilter.css';
 
 function TodoFilter() {
-  const setFilter = useSetRecoilState(todoListFilterState);
-  const [todoList, setTodoList] = useRecoilState(todoListState);
+  const [currentFilter, setFilter] = useRecoilState(todoListFilterState);
+  const [currentSortState, setSortState] = useRecoilState(todoSortState);
 
   return (
     <div className='filter'>
@@ -17,24 +16,26 @@ function TodoFilter() {
           key={ filter }
           type='button'
           onClick={ () => setFilter(filter) }
+          className={ currentFilter === filter ? 'selected' : '' }
         >
           { filter }
         </button>
       )) }
-      { Object.values(SORT_STATE).map((sort) => (
-        <button
-          key={ sort }
-          type='button'
-          onClick={ () => {
-            const sortedList = sortTodoList(todoList, sort);
-
-            setTodoList(sortedList);
-            saveTodoListInStorage(sortedList);
-          } }
-        >
-          { sort }
-        </button>
-      )) }
+      <div>
+        { Object.values(SORT_STATE).map((sort) => (
+          <button
+            key={ sort }
+            type='button'
+            onClick={ () => {
+              saveSortStateInStorage(sort);
+              setSortState(sort);
+            } }
+            className={ currentSortState === sort ? 'selected' : '' }
+          >
+            { sort }
+          </button>
+        )) }
+      </div>
     </div>
   );
 }

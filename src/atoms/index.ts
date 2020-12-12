@@ -1,3 +1,4 @@
+import { getSortStateFromStorage } from './../storage/index';
 import { getTodoListFromStorage } from './../storage';
 import { atom } from 'recoil';
 import type { RecoilState } from 'recoil';
@@ -17,4 +18,9 @@ export const todoListState: RecoilState<TodoListItem[]> = atom({
 export const todoListFilterState = atom({
   key: 'todoListFilterState',
   default: FILTER_STATE.DEFAULT,
+});
+
+export const todoSortState = atom({
+  key: 'todoSortState',
+  default: getSortStateFromStorage(),
 });

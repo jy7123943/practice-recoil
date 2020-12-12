@@ -1,12 +1,12 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { filteredTodoListState } from '../../selector';
+import { filteredTodoListSelector } from '../../selector';
 import TodoController from './TodoController';
 import TodoItem from './TodoItem';
 import './index.css';
 
 function TodoList() {
-  const todoList = useRecoilValue(filteredTodoListState);
+  const todoList = useRecoilValue(filteredTodoListSelector);
 
   if (todoList.length === 0) {
     return <div className='empty'>Empty List!</div>;
