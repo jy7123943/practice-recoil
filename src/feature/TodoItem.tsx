@@ -6,7 +6,7 @@ import { deleteTodoItem, toggleTodoItem } from '../controller';
 import { TodoListItem } from '../entity';
 import './TodoItem.css';
 
-function TodoItem({ id, todo, is_done, created_at }: TodoListItem) {
+function TodoItem({ id, todo, is_complete, created_at }: TodoListItem) {
   const setTodoList = useSetRecoilState(todoListState);
 
   const onItemDelete = () => {
@@ -21,9 +21,9 @@ function TodoItem({ id, todo, is_done, created_at }: TodoListItem) {
     <li key={ id } className='todo-item'>
       <label>
         <span className='todo'>
-          <input type='checkbox' checked={ is_done } onChange={ onItemToggle } />
+          <input type='checkbox' checked={ is_complete } onChange={ onItemToggle } />
           <span
-            className={ is_done ? 'complete' : '' }
+            className={ is_complete ? 'complete' : '' }
           >
             { todo }
           </span>

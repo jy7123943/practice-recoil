@@ -18,7 +18,7 @@ function TodoInput() {
       {
         id: `id-${oldTodoList.length}`,
         todo: todoText,
-        is_done: false,
+        is_complete: false,
         created_at: new Date().getTime(),
       },
       ...oldTodoList,

@@ -1,7 +1,7 @@
 export interface TodoListItem {
   id: string;
   todo: string;
-  is_done: boolean;
+  is_complete: boolean;
   created_at: number;
 }
 

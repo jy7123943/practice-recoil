@@ -7,7 +7,7 @@ export const deleteTodoItem = (list: TodoListItem[], targetId: string) => (
 export const toggleTodoItem = (list: TodoListItem[], targetId: string) => (
   list.map((item) => (
     item.id === targetId
-      ? { ...item, is_done: !item.is_done }
+      ? { ...item, is_complete: !item.is_complete }
       : item
   ))
 );
@@ -20,9 +20,9 @@ export const sortTodoList = (list: TodoListItem[], sortType: FILTER_STATE) => (
   ))
 );
 
-export const setAllItemsDone = (list: TodoListItem[]) => (
+export const setAllItemsComplete = (list: TodoListItem[]) => (
   list.map((item) => ({
     ...item,
-    is_done: true
+    is_complete: true
   }))
 );
