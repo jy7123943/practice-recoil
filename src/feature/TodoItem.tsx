@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import React, { useState } from 'react';
+import React from 'react';
 import { useSetRecoilState } from 'recoil';
 import { todoListState } from '../atoms';
 import { deleteTodoItem, toggleTodoItem } from '../controller';

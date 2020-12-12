@@ -17,6 +17,12 @@ function TodoTextEditor({ id, todoText }: Props) {
   const setTodoList = useSetRecoilState(todoListState);
 
   const saveEditedTodo = (event: FocusEvent<HTMLInputElement>) => {
+    setEditorShown(false);
+
+    if (todoText === event.target.value) {
+      return;
+    }
+
     setTodoList((oldTodoList) => {
       const updatedList = mapEditedItem(oldTodoList, id, {
         todo: event.target.value,
@@ -25,8 +31,6 @@ function TodoTextEditor({ id, todoText }: Props) {
 
       return sortTodoList(updatedList, SORT_STATE.NEW);
     });
-
-    setEditorShown(false);
   };
 
   return (
