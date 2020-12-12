@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
 import type { FocusEvent } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { todoListState } from '../atoms';
+import { todoListState } from '../../atoms';
 import './TodoItem.css';
-import { mapEditedItem, sortTodoList } from '../controller';
-import { SORT_STATE } from '../entity';
+import { mapEditedItem, sortTodoList } from '../../controller';
+import { SORT_STATE } from '../../entity';
 
 interface Props {
   id: string;

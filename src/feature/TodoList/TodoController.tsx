@@ -1,7 +1,7 @@
 import React from 'react';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
-import { todoListState } from '../atoms';
-import { setAllItemsCompleted } from '../controller';
+import { todoListState } from '../../atoms';
+import { setAllItemsCompleted } from '../../controller';
 import './TodoController.css';
 
 function TodoController() {

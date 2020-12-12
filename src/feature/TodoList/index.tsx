@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { filteredTodoListState } from '../selector';
+import { filteredTodoListState } from '../../selector';
 import TodoController from './TodoController';
 import TodoItem from './TodoItem';
-import './TodoList.css';
+import './index.css';
 
 function TodoList() {
   const todoList = useRecoilValue(filteredTodoListState);
