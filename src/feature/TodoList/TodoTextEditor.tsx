@@ -5,6 +5,7 @@ import { todoListState } from '../../atoms';
 import './TodoItem.css';
 import { mapEditedItem, sortTodoList } from '../../controller';
 import { SORT_STATE } from '../../entity';
+import { saveTodoListInStorage } from '../../storage';
 
 interface Props {
   id: string;
@@ -29,7 +30,9 @@ function TodoTextEditor({ id, todoText }: Props) {
         created_at: new Date().getTime(),
       });
 
-      return sortTodoList(updatedList, SORT_STATE.NEW);
+      return saveTodoListInStorage(
+        sortTodoList(updatedList, SORT_STATE.NEW)
+      );
     });
   };
 

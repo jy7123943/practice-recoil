@@ -3,6 +3,7 @@ import { useSetRecoilState, useRecoilState } from 'recoil';
 import { todoListFilterState, todoListState } from '../atoms';
 import { sortTodoList } from '../controller';
 import { FILTER_STATE, SORT_STATE } from '../entity';
+import { saveTodoListInStorage } from '../storage';
 import './TodoFilter.css';
 
 function TodoFilter() {
@@ -24,7 +25,12 @@ function TodoFilter() {
         <button
           key={ sort }
           type='button'
-          onClick={ () => setTodoList(sortTodoList(todoList, sort)) }
+          onClick={ () => {
+            const sortedList = sortTodoList(todoList, sort);
+
+            setTodoList(sortedList);
+            saveTodoListInStorage(sortedList);
+          } }
         >
           { sort }
         </button>

@@ -4,6 +4,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { todoListState, todoTextState } from '../atoms';
 import type { TodoListItem } from './../entity';
 import './TodoInput.css';
+import { saveTodoListInStorage } from '../storage';
 
 function TodoInput() {
   const [todoText, setTodoText] = useRecoilState(todoTextState);
@@ -14,15 +15,21 @@ function TodoInput() {
       return;
     }
 
-    setTodoList((oldTodoList: TodoListItem[]) => ([
-      {
-        id: `id-${oldTodoList.length}`,
-        todo: todoText,
-        is_complete: false,
-        created_at: new Date().getTime(),
-      },
-      ...oldTodoList,
-    ]));
+    setTodoList((oldTodoList: TodoListItem[]) => {
+      const newTodoList = [
+        {
+          id: `id-${oldTodoList.length}`,
+          todo: todoText,
+          is_complete: false,
+          created_at: new Date().getTime(),
+        },
+        ...oldTodoList,
+      ];
+
+      saveTodoListInStorage(newTodoList);
+
+      return newTodoList;
+    });
 
     setTodoText('');
   };

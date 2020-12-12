@@ -1,15 +1,23 @@
 import React from 'react';
-import { useResetRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { todoListState } from '../../atoms';
 import { setAllItemsCompleted } from '../../controller';
+import { saveTodoListInStorage } from '../../storage';
 import './TodoController.css';
 
 function TodoController() {
-  const onAllItemsDelete = useResetRecoilState(todoListState);
   const setTodoList = useSetRecoilState(todoListState);
 
   const onAllItemsCheck = () => {
-    setTodoList((oldTodoList) => setAllItemsCompleted(oldTodoList));
+    setTodoList((oldTodoList) => {
+      const completedList = setAllItemsCompleted(oldTodoList);
+
+      return saveTodoListInStorage(completedList);
+    });
+  };
+  const onAllItemsDelete = () => {
+    setTodoList([]);
+    saveTodoListInStorage([]);
   };
 
   return (
