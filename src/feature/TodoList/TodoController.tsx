@@ -32,7 +32,7 @@ function TodoController() {
         type='button'
         onClick={ onAllItemsDelete }
       >
-        ALL DELETE
+        CLEAR ALL
       </button>
     </div>
   );
