@@ -1,8 +1,7 @@
-import { atom, selector } from 'recoil';
+import { atom } from 'recoil';
 import type { RecoilState } from 'recoil';
 import type { TodoListItem } from './../entity';
 import { FILTER_STATE } from './../entity';
-import { filterCompleted, filterUncompleted } from '../controller';
 
 export const todoTextState = atom({
   key: 'todoTextState',
@@ -17,21 +16,4 @@ export const todoListState: RecoilState<TodoListItem[]> = atom({
 export const todoListFilterState = atom({
   key: 'todoListFilterState',
   default: FILTER_STATE.DEFAULT,
-});
-
-export const filteredTodoListState = selector({
-  key: 'filteredTodoListState',
-  get: ({ get }) => {
-    const filter = get(todoListFilterState);
-    const list = get(todoListState);
-
-    switch (filter) {
-      case FILTER_STATE.COMPLETED:
-        return filterCompleted(list);
-      case FILTER_STATE.UNCOMPLETED:
-        return filterUncompleted(list);
-      default:
-        return list;
-    }
-  },
 });

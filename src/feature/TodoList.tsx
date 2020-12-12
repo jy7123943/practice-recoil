@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { filteredTodoListState } from '../atoms';
+import { filteredTodoListState } from '../selector';
 import TodoController from './TodoController';
 import TodoItem from './TodoItem';
 import './TodoList.css';

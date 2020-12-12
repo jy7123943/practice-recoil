@@ -10,7 +10,6 @@ import './TodoItem.css';
 
 function TodoItem({ id, todo, is_complete, created_at }: TodoListItem) {
   const setTodoList = useSetRecoilState(todoListState);
-  const [isEditorShown, setEditorShown] = useState(false);
 
   const onItemDelete = () => {
     setTodoList((oldTodoList) => deleteTodoItem(oldTodoList, id));
