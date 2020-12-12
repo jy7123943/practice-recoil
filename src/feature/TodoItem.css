@@ -5,7 +5,7 @@
 
 .todo-item {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 5px;
   grid-row: 1;
   grid-template-columns: auto 20px;
   margin-bottom: 10px;
@@ -40,10 +40,9 @@ label {
 }
 
 .delete-button {
-  background: #3381b5;
+  background: none;
   height: 20px;
-  border-radius: 10px;
-  color: #fff;
+  color: #3381b5;
   font-weight: bold;
   font-size: 11px;
 }
