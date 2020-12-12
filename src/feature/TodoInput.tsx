@@ -46,6 +46,7 @@ function TodoInput() {
 
   return (
     <div className="input-container">
+      <div></div>
       <input
         type='text'
         value={ todoText }

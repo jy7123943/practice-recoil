@@ -1,19 +1,23 @@
 .input-container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   display: flex;
-  margin-bottom: 10px;
+  box-shadow: 7px -4px 14px 0px rgba(0,0,0,0.1);
 }
 
 .todo-input {
   width: 80%;
-  height: 35px;
+  height: 50px;
   padding: 10px;
   font-size: 18px;
-  border: 1px solid #ddd;
+  border: none;
 }
 
 .save-button {
   width: 20%;
-  height: 35px;
+  height: 50px;
   background: #222;
   color: #fff;
   font-weight: bold;

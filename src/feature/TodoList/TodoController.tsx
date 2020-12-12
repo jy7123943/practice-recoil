@@ -26,7 +26,7 @@ function TodoController() {
         type='button'
         onClick={ onAllItemsCheck }
       >
-        ALL COMPLETED
+        ALL
       </button>
       <button
         type='button'

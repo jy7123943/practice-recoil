@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="container">
       <h1>TO DO</h1>
-      <TodoInput />
       <TodoFilter />
       <TodoList />
+      <TodoInput />
     </div>
   );
 }
