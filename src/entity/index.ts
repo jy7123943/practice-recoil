@@ -9,4 +9,6 @@ export enum FILTER_STATE {
   DEFAULT = 'default',
   NEW = 'new',
   OLD = 'old',
+  COMPLETED = 'completed',
+  UNCOMPLETED = 'uncompleted',
 }

@@ -9,24 +9,15 @@ function TodoFilter() {
 
   return (
     <div className='filter'>
-      <button
-        type='button'
-        onClick={ () => setFilter(FILTER_STATE.DEFAULT) }
-      >
-        DEFAULT
-      </button>
-      <button
-        type='button'
-        onClick={ () => setFilter(FILTER_STATE.NEW) }
-      >
-        NEW
-      </button>
-      <button
-        type='button'
-        onClick={ () => setFilter(FILTER_STATE.OLD) }
-      >
-        OLD
-      </button>
+      { Object.values(FILTER_STATE).map((filter) => (
+        <button
+          key={ filter }
+          type='button'
+          onClick={ () => setFilter(filter) }
+        >
+          { filter }
+        </button>
+      )) }
     </div>
   );
 }

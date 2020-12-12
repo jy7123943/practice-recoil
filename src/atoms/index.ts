@@ -2,7 +2,7 @@ import { atom, selector } from 'recoil';
 import type { RecoilState } from 'recoil';
 import type { TodoListItem } from './../entity';
 import { FILTER_STATE } from './../entity';
-import { sortTodoList } from '../controller';
+import { filterCompleted, filterUncompleted, sortTodoList } from '../controller';
 
 export const todoTextState = atom({
   key: 'todoTextState',
@@ -30,6 +30,10 @@ export const filteredTodoListState = selector({
         return sortTodoList(list, FILTER_STATE.NEW);
       case FILTER_STATE.OLD:
         return sortTodoList(list, FILTER_STATE.OLD);
+      case FILTER_STATE.COMPLETED:
+        return filterCompleted(list);
+      case FILTER_STATE.UNCOMPLETED:
+        return filterUncompleted(list);
       default:
         return list;
     }

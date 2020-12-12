@@ -1,7 +1,7 @@
 import React from 'react';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { todoListState } from '../atoms';
-import { setAllItemsComplete } from '../controller';
+import { setAllItemsCompleted } from '../controller';
 import './TodoController.css';
 
 function TodoController() {
@@ -9,7 +9,7 @@ function TodoController() {
   const setTodoList = useSetRecoilState(todoListState);
 
   const onAllItemsCheck = () => {
-    setTodoList((oldTodoList) => setAllItemsComplete(oldTodoList));
+    setTodoList((oldTodoList) => setAllItemsCompleted(oldTodoList));
   };
 
   return (
@@ -18,7 +18,7 @@ function TodoController() {
         type='button'
         onClick={ onAllItemsCheck }
       >
-        ALL COMPLETE
+        ALL COMPLETED
       </button>
       <button
         type='button'

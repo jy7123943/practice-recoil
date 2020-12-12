@@ -20,9 +20,17 @@ export const sortTodoList = (list: TodoListItem[], sortType: FILTER_STATE) => (
   ))
 );
 
-export const setAllItemsComplete = (list: TodoListItem[]) => (
+export const setAllItemsCompleted = (list: TodoListItem[]) => (
   list.map((item) => ({
     ...item,
     is_complete: true
   }))
+);
+
+export const filterCompleted = (list: TodoListItem[]) => (
+  list.filter(({ is_complete }) => is_complete)
+);
+
+export const filterUncompleted = (list: TodoListItem[]) => (
+  list.filter(({ is_complete }) => !is_complete)
 );
