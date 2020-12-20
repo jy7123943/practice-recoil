@@ -1,9 +1,10 @@
+import { ACTIVITY_TYPE } from './../entity/activity';
 import { getSortStateFromStorage, getFilterStateFromStorage } from './../storage/index';
 import { getTodoListFromStorage } from './../storage';
 import { atom } from 'recoil';
 import type { RecoilState } from 'recoil';
 import type { TodoListItem } from './../entity';
-import type { Activity } from '../entity/activity';
+import { activitySelector } from '../selector';
 
 export const todoTextState = atom({
   key: 'todoTextState',
@@ -27,12 +28,12 @@ export const todoSortState = atom({
 
 export const activityState = atom({
   key: 'activityState',
-  default: {} as Activity,
+  default: activitySelector,
 });
 
-export const activityTypeState = atom({
+export const activityTypeState: RecoilState<ACTIVITY_TYPE> = atom({
   key: 'activityTypeState',
-  default: undefined,
+  default: '' as ACTIVITY_TYPE,
 });
 
 export const refreshActivityState = atom({
