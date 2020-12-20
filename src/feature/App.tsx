@@ -1,17 +1,19 @@
 import React from 'react';
-import TodoInput from './TodoInput';
-import TodoList from './TodoList';
-import TodoFilter from './TodoFilter';
+import { Route, Switch } from 'react-router-dom';
+import Todo from './Todo';
+import Activity from './Activity';
 import './App.css';
 
 function App() {
   return (
-    <div className="container">
-      <h1>TO DO</h1>
-      <TodoFilter />
-      <TodoList />
-      <TodoInput />
-    </div>
+    <Switch>
+      <Route exact path='/'>
+        <Todo />
+      </Route>
+      <Route exact path='/activity'>
+        <Activity />
+      </Route>
+    </Switch>
   );
 }
 

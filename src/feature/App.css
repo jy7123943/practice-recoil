@@ -31,5 +31,29 @@ input, button {
 }
 
 .container {
-  padding: 15px 20px 50px;
+  padding: 15px 20px 100px;
+}
+
+a {
+  text-decoration: none;
+  color: #222;
+}
+
+.input-container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 7px -4px 14px 0px rgba(0,0,0,0.1);
+}
+
+.bottom-button {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  background: #6dadd8;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
