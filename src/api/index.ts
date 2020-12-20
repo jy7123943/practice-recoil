@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { ActivityType } from '../entity/activity';
+import { ACTIVITY_TYPE } from '../entity/activity';
 
-export const fetchActivity = (type?: ActivityType) => {
+export const fetchActivity = (type?: ACTIVITY_TYPE) => {
   return axios.get(
     `http://www.boredapi.com/api/activity/${type ? `?type=${type}`: ''}`
   );
