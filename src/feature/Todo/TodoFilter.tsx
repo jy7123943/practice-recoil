@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { todoListFilterState, todoSortState } from '../atoms';
-import { FILTER_STATE, SORT_STATE } from '../entity';
-import { saveFilterStateInStorage, saveSortStateInStorage } from '../storage';
+import { todoListFilterState, todoSortState } from '../../atoms';
+import { FILTER_STATE, SORT_STATE } from '../../entity';
+import { saveFilterStateInStorage, saveSortStateInStorage } from '../../storage';
 import './TodoFilter.css';
 
 function TodoFilter() {

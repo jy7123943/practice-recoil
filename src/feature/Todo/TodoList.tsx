@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 import { filteredTodoListSelector } from '../../selector';
 import TodoController from './TodoController';
 import TodoItem from './TodoItem';
-import './index.css';
+import './TodoList.css';
 
 function TodoList() {
   const todoList = useRecoilValue(filteredTodoListSelector);

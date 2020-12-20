@@ -1,10 +1,11 @@
 import React, { ChangeEvent } from 'react';
 import type { KeyboardEvent } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { todoListState, todoTextState } from '../atoms';
-import type { TodoListItem } from './../entity';
+import { todoListState, todoTextState } from '../../atoms';
+import type { TodoListItem } from '../../entity';
 import './TodoInput.css';
-import { saveTodoListInStorage } from '../storage';
+import { saveTodoListInStorage } from '../../storage';
+import { Link } from 'react-router-dom';
 
 function TodoInput() {
   const [todoText, setTodoText] = useRecoilState(todoTextState);
@@ -46,21 +47,25 @@ function TodoInput() {
 
   return (
     <div className="input-container">
-      <div></div>
-      <input
-        type='text'
-        value={ todoText }
-        onChange={ onTodoTextChange }
-        onKeyPress={ onEnterPress }
-        className='todo-input'
-      />
-      <button
-        type='button'
-        onClick={ saveTodoItem }
-        className='save-button'
-      >
-        SAVE
-      </button>
+      <div className="input-area">
+        <input
+          type='text'
+          value={ todoText }
+          onChange={ onTodoTextChange }
+          onKeyPress={ onEnterPress }
+          className='todo-input'
+        />
+        <button
+          type='button'
+          onClick={ saveTodoItem }
+          className='save-button'
+        >
+          SAVE
+        </button>
+      </div>
+      <Link to='/activity' className='bottom-button'>
+        FIND RANDOM ACTIVITY
+      </Link>
     </div>
   );
 }
