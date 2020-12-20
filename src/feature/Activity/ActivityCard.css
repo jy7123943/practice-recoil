@@ -1,3 +1,8 @@
+.card-container {
+  padding: 10px;
+  margin-top: 20px;
+  box-shadow: 9px 7px 14px 0px rgba(0,0,0,0.1);
+}
 .card-container h2 {
   font-size: 24px;
   color: #333;

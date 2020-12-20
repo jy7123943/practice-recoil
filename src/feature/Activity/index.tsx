@@ -4,6 +4,7 @@ import { useRecoilValueLoadable } from 'recoil';
 import { activitySelector } from '../../selector';
 import ActivityCard from './ActivityCard';
 import ActivityTypeFilter from './ActivityTypeFilter';
+import './index.css';
 
 function Activity() {
   const { state } = useRecoilValueLoadable(activitySelector);
@@ -11,9 +12,9 @@ function Activity() {
   const renderContent = () => {
     switch (state) {
       case 'hasError':
-        return <div>Error</div>;
+        return <p>Error</p>;
       case 'loading':
-        return <div>Loading...</div>;
+        return <p>Loading...</p>;
       case 'hasValue':
         return (
           <>

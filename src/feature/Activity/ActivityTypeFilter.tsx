@@ -2,7 +2,6 @@ import React from 'react';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { activityState, activityTypeState } from '../../atoms';
 import { ACTIVITY_TYPE } from '../../entity/activity';
-import './ActivityTypeFilter.css';
 
 function ActivityTypeFilter() {
   const setActivityType = useSetRecoilState(activityTypeState);
