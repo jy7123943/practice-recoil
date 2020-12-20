@@ -3,6 +3,7 @@ import React from 'react';
 import { useRecoilValueLoadable } from 'recoil';
 import { activitySelector } from '../../selector';
 import ActivityCard from './ActivityCard';
+import ActivityTypeFilter from './ActivityTypeFilter';
 
 function Activity() {
   const { state } = useRecoilValueLoadable(activitySelector);
@@ -14,7 +15,12 @@ function Activity() {
       case 'loading':
         return <div>Loading...</div>;
       case 'hasValue':
-        return <ActivityCard />;
+        return (
+          <>
+            <ActivityTypeFilter />
+            <ActivityCard />
+          </>
+        );
     }
   };
 
