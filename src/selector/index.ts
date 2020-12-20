@@ -1,10 +1,15 @@
 import { fetchActivity } from './../api/index';
 import { sortTodoList } from './../controller/index';
-import { todoListFilterState, todoListState, todoSortState, activityTypeState, activityState, refreshActivityState } from './../atoms/index';
-import { DefaultValue, RecoilState, selector } from 'recoil';
+import {
+  todoListFilterState,
+  todoListState,
+  todoSortState,
+  activityTypeState,
+  refreshActivityState,
+} from './../atoms/index';
+import { selector } from 'recoil';
 import { FILTER_STATE } from './../entity';
 import { filterCompleted, filterUncompleted } from '../controller';
-import type { Activity } from '../entity/activity';
 
 export const filteredTodoListSelector = selector({
   key: 'filteredTodoListSelector',
@@ -24,7 +29,7 @@ export const filteredTodoListSelector = selector({
   },
 });
 
-export const activitySelector: RecoilState<Activity> = selector({
+export const activitySelector = selector({
   key: 'activitySelector',
   get: async ({ get }) => {
     get(refreshActivityState);
@@ -38,9 +43,4 @@ export const activitySelector: RecoilState<Activity> = selector({
       throw e;
     }
   },
-  set: ({ set }, value) => {
-    if (value instanceof DefaultValue) {
-      set(activityState, v => v);
-    }
-  }
 });
