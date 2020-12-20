@@ -1,0 +1,29 @@
+.card-container h2 {
+  font-size: 24px;
+  color: #333;
+}
+.card-container ul {
+  margin-top: 10px;
+}
+.card-container li {
+  margin-bottom: 5px;
+  color: #555;
+  font-size: 18px;
+}
+.badge {
+  background: #f03b59;
+  color: #fff;
+  padding: 2px 8px;
+  font-size: 12px;
+  vertical-align: middle;
+  margin-left: 6px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.add-button {
+  margin-top: 15px;
+  background: #eee;
+  color: #555;
+  padding: 10px 30px;
+  font-weight: bold;
+}
