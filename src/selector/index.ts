@@ -1,11 +1,8 @@
-import { fetchActivity } from './../api/index';
 import { sortTodoList } from './../controller/index';
 import {
   todoListFilterState,
   todoListState,
   todoSortState,
-  activityTypeState,
-  refreshActivityState,
 } from './../atoms/index';
 import { selector } from 'recoil';
 import { FILTER_STATE } from './../entity';
@@ -25,22 +22,6 @@ export const filteredTodoListSelector = selector({
         return sortTodoList(filterUncompleted(list), sortState);
       default:
         return sortTodoList(list, sortState);
-    }
-  },
-});
-
-export const activitySelector = selector({
-  key: 'activitySelector',
-  get: async ({ get }) => {
-    get(refreshActivityState);
-
-    try {
-      const activityType = get(activityTypeState);
-      const response = await fetchActivity(activityType);
-
-      return response.data;
-    } catch (e) {
-      throw e;
     }
   },
 });

@@ -1,11 +1,12 @@
 import React from 'react';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { activityState, activityTypeState } from '../../atoms';
-import { ACTIVITY_TYPE } from '../../entity/activity';
+import { useRecoilState } from 'recoil';
+import { activityTypeState } from '../../atoms';
+import { Activity, ACTIVITY_TYPE } from '../../entity/activity';
+import { QueryObserverResult, useQuery } from 'react-query';
 
 function ActivityTypeFilter() {
-  const setActivityType = useSetRecoilState(activityTypeState);
-  const { type } = useRecoilValue(activityState);
+  const [activityType, setActivityType] = useRecoilState(activityTypeState);
+  const { data } = useQuery<QueryObserverResult<Activity>>(['activities', activityType]);
 
   return (
     <div className='filter'>
@@ -14,7 +15,7 @@ function ActivityTypeFilter() {
           key={ activityType }
           type='button'
           onClick={ () => setActivityType(activityType) }
-          className={ type === activityType ? 'selected' : '' }
+          className={ data?.data?.type === activityType ? 'selected' : '' }
         >
           { activityType }
         </button>

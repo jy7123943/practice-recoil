@@ -2,29 +2,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { refreshActivityState, todoListState } from '../../atoms';
-import { activitySelector } from '../../selector';
+import { activityTypeState, todoListState } from '../../atoms';
 import type { TodoListItem } from '../../entity';
 import { saveTodoListInStorage } from '../../storage';
 import './ActivityCard.css';
+import { QueryObserverResult, useQuery } from 'react-query';
+import { Activity } from '../../entity/activity';
 
 function ActivityCard() {
-  const {
-    activity,
-    price,
-    participants,
-    type,
-  } = useRecoilValue(activitySelector);
   const setTodoList = useSetRecoilState(todoListState);
-  const setRefreshActivityState = useSetRecoilState(refreshActivityState);
-  const refreshActivity = () => setRefreshActivityState(n => n + 1);
+  const activityType = useRecoilValue(activityTypeState);
+  const {
+    data,
+    refetch,
+  } = useQuery<QueryObserverResult<Activity>>(['activities', activityType]);
 
   const onAddButtonClick = () => {
     setTodoList((oldTodoList: TodoListItem[]) => {
       const newTodoList = [
         {
           id: `id-${oldTodoList.length}`,
-          todo: activity,
+          todo: data?.data?.activity || '',
           is_complete: false,
           created_at: new Date().getTime(),
         },
@@ -36,19 +34,19 @@ function ActivityCard() {
       return newTodoList;
     });
 
-    refreshActivity();
+    refetch();
   };
 
   return (
     <>
       <section className='card-container'>
         <h2>
-          { activity }
-          <span className='badge'>{ type }</span>
+          { data?.data?.activity }
+          <span className='badge'>{ data?.data?.type }</span>
         </h2>
         <ul>
-          <li>COST: { price }$</li>
-          <li>PARTICIPANTS: { participants }</li>
+          <li>COST: { data?.data?.price }$</li>
+          <li>PARTICIPANTS: { data?.data?.participants }</li>
         </ul>
         <button
           type='button'

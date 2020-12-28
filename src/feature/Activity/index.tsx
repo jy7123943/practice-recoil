@@ -1,21 +1,24 @@
 
 import React from 'react';
-import { useRecoilValueLoadable } from 'recoil';
-import { activitySelector } from '../../selector';
+import { useRecoilValue } from 'recoil';
 import ActivityCard from './ActivityCard';
 import ActivityTypeFilter from './ActivityTypeFilter';
 import './index.css';
+import { useQuery } from 'react-query';
+import { fetchActivity } from '../../api';
+import { activityTypeState } from '../../atoms';
 
 function Activity() {
-  const { state } = useRecoilValueLoadable(activitySelector);
+  const activityType = useRecoilValue(activityTypeState);
+  const { status } = useQuery(['activities', activityType], () => fetchActivity(activityType));
 
   const renderContent = () => {
-    switch (state) {
-      case 'hasError':
+    switch (status) {
+      case 'error':
         return <p>Error</p>;
       case 'loading':
         return <p>Loading...</p>;
-      case 'hasValue':
+      case 'success':
         return (
           <>
             <ActivityTypeFilter />
