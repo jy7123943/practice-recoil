@@ -6,8 +6,9 @@ import { activityTypeState, todoListState } from '../../atoms';
 import type { TodoListItem } from '../../entity';
 import { saveTodoListInStorage } from '../../storage';
 import './ActivityCard.css';
-import { QueryObserverResult, useQuery } from 'react-query';
+import { useQuery } from 'react-query';
 import { Activity } from '../../entity/activity';
+import type { AxiosResponse } from 'axios';
 
 function ActivityCard() {
   const setTodoList = useSetRecoilState(todoListState);
@@ -15,14 +16,14 @@ function ActivityCard() {
   const {
     data,
     refetch,
-  } = useQuery<QueryObserverResult<Activity>>(['activities', activityType]);
+  } = useQuery<AxiosResponse<Activity>>(['activities', activityType]);
 
   const onAddButtonClick = () => {
     setTodoList((oldTodoList: TodoListItem[]) => {
       const newTodoList = [
         {
           id: `id-${oldTodoList.length}`,
-          todo: data?.data?.activity || '',
+          todo: data?.data.activity || '',
           is_complete: false,
           created_at: new Date().getTime(),
         },
@@ -41,12 +42,12 @@ function ActivityCard() {
     <>
       <section className='card-container'>
         <h2>
-          { data?.data?.activity }
-          <span className='badge'>{ data?.data?.type }</span>
+          { data?.data.activity }
+          <span className='badge'>{ data?.data.type }</span>
         </h2>
         <ul>
-          <li>COST: { data?.data?.price }$</li>
-          <li>PARTICIPANTS: { data?.data?.participants }</li>
+          <li>COST: { data?.data.price }$</li>
+          <li>PARTICIPANTS: { data?.data.participants }</li>
         </ul>
         <button
           type='button'

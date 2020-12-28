@@ -7,10 +7,15 @@ import './index.css';
 import { useQuery } from 'react-query';
 import { fetchActivity } from '../../api';
 import { activityTypeState } from '../../atoms';
+import { AxiosResponse } from 'axios';
+import type { Activity as ActivityType } from '../../entity/activity';
 
 function Activity() {
   const activityType = useRecoilValue(activityTypeState);
-  const { status } = useQuery(['activities', activityType], () => fetchActivity(activityType));
+  const { status } = useQuery<AxiosResponse<ActivityType>>(
+    ['activities', activityType],
+    () => fetchActivity(activityType),
+  );
 
   const renderContent = () => {
     switch (status) {
